@@ -20,9 +20,7 @@ function preload() {
 function setup() {
   cnv = createCanvas(390, 553);
   cnv.parent("sketch-holder");
-  cnv.style("display", "block");
-
-  console.log(img);
+//  cnv.style("display", "block");
 
   pg = createGraphics(495, 553);
 
@@ -36,7 +34,7 @@ function setup() {
   button.size(50, 23);
   button.mousePressed(save);
 
-  slider = createSlider(0, 255, 20);
+  slider = createSlider(10, 50, 25);
   slider.parent("controls");
   slider.style("width", "100px");
 
@@ -119,4 +117,15 @@ function draw() {
   pop();
   //position image on top
   image(img, 0, 0);
+
+  if (touches.length > 0) {
+    if(touches[0].y > cnv.height || touches[0].y < 0 || touches[0].x < 0 || touches[0].x > cnv.width){
+      shouldMove = true;
+    }else{
+      shouldMove = false;
+    }
+  }
+  if(touches.length == 0){
+    shouldMove = true;
+  }
 }

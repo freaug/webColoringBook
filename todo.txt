@@ -1,0 +1,2 @@
+resize canvas to fit on mobile screens
+make a better gui for picking color and controling size of brush
