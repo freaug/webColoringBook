@@ -9,6 +9,8 @@ let cnv;
 
 let socket;
 
+let shouldMove = false;
+
 let button, slider, colorPicker;
 
 function preload() {
@@ -16,10 +18,13 @@ function preload() {
 }
 
 function setup() {
-  cnv = createCanvas(600, 600);
+  cnv = createCanvas(390, 553);
   cnv.parent("sketch-holder");
+  cnv.style("display", "block");
 
-  pg = createGraphics(600, 600);
+  console.log(img);
+
+  pg = createGraphics(495, 553);
 
   noCursor();
 
@@ -64,7 +69,6 @@ function touchStarted() {
   let blue = colorPicker.color().levels[2];
 
   sendmouse(mouseX, mouseY, pmouseX, pmouseY, red, green, blue, drawSize);
-  
 }
 
 function touchMoved() {
@@ -80,32 +84,12 @@ function touchMoved() {
   let blue = colorPicker.color().levels[2];
 
   sendmouse(mouseX, mouseY, pmouseX, pmouseY, red, green, blue, drawSize);
-  
-  return false;
 
+  return shouldMove;
 }
 
-
-
-
+//data we send to the server
 function sendmouse(xpos, ypos, pxpos, pypos, red, green, blue, size) {
-  // We are sending!
-  console.log(
-    "sendmouse: " +
-      xpos +
-      " " +
-      ypos +
-      " " +
-      red +
-      " " +
-      green +
-      " " +
-      blue +
-      " " +
-      size
-  );
-
-  // Make a little object with  and y
   var data = {
     x: xpos,
     y: ypos,
@@ -117,7 +101,6 @@ function sendmouse(xpos, ypos, pxpos, pypos, red, green, blue, size) {
     size: drawSize
   };
 
-  // Send that object to the socket
   socket.emit("mouse", data);
 }
 

@@ -1,20 +1,17 @@
-html,
-body {
-    height: 100%;
-    margin: 5em;
-}
 
-#text {
-    width: 800px;
+
+.text {
+  width: window.width;
+  height: window.height;
 }
 
 #sketch-holder {
-    margin: 0;
-    display: flex;
-    justify-content: left;
+  display: flex;
+  justify-content: center;
 }
 
 #controls {
-    display: flex;
-    justify-content: left;
+  display: flex;
+  justify-content: center;
 }
+
